@@ -1,4 +1,3 @@
-import {useEffect,useState} from 'react';
 import {Button} from "../components/Button"
 import {useUser} from '../hooks/useUser'
 import {useNavigate} from "react-router-dom"
@@ -7,7 +6,6 @@ export const Appbar=()=>{
     const navigate=useNavigate();
     const use=useUser();
     let uname=null
-    // const [uname,setUser]=useState("")
     if(use.loading){
         return "Loading..."
     }

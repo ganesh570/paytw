@@ -43,14 +43,16 @@ export const Signup = () => {
         }} placeholder="123456" label={"Password"} ty={"password"}/>
         <div className="pt-4">
           <Button onPress={async () => {
-            const response = await axios.post("http://localhost:3000/api/v1/user/signup", {
+            const response = await axios.post(import.meta.env.VITE_BACKEND_URL+"/api/v1/user/signup", {
               username,
               password,
               firstName,
               lastName,
             });
-            localStorage.setItem("token", response.data.token);
-            navigate("/dashboard")
+            if(response){
+              localStorage.setItem("token", response.data.token);
+              navigate("/signin")
+            }
           }} label={"Sign up"} />
         </div>
         <BottomWarning label={"Already have an account?"} buttonText={"Sign in"} to={"/signin"} />

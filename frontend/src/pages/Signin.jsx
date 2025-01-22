@@ -25,13 +25,15 @@ export const Signin=()=>{
         }} ty={"password"}/>
         <div className="pt-4">
           <Button label={"Sign in"} onPress={async ()=>{
-            const response=await axios.post("http://localhost:3000/api/v1/user/signin",{
+            const response=await axios.post(import.meta.env.VITE_BACKEND_URL+"/api/v1/user/signin",{
               username,
               password
             });
             console.log(response);
-            localStorage.setItem("token",response.data.token);
-            navigate("/dashboard")
+            if(response){
+              localStorage.setItem("token",response.data.token);
+             navigate("/dashboard")
+            }
           }}/>
         </div>
         <BottomWarning label={"Don't have an account?"} buttonText={"Sign up"} to={"/signup"} />

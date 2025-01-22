@@ -10,10 +10,10 @@ export const Users = () => {
     const [filte, setFilter] = useState("");
 
     useEffect(() => {
-        axios.get("http://localhost:3000/api/v1/user/bulk?filter=" + filte)
-            .then(response => {
+        
+        axios.get(import.meta.env.VITE_BACKEND_URL+"/api/v1/user/bulk?filter=" + filte)
+            .then((response) => {
                 const filteredUsers = response.data.user.filter(user => {
-                    
                     return user._id !== use.user.id
                 });
                 setUsers(filteredUsers);
@@ -33,7 +33,11 @@ export const Users = () => {
         </div>
         <div>
             
-            {users.map(user => <User user={user} />)}
+            {users.map((user) =>( 
+                <li key={user} className="flex flex-col">
+                    <User user={user} />
+                </li>
+            ))}
         </div>
     </>
 }

@@ -9,10 +9,6 @@ import {useNavigate} from "react-router-dom"
 export const Dashboard=()=>{
     const navigate=useNavigate();
     const use=useUser();
-    console.log(use.user)
-    
-    
-    
     if(use.loading){
         return "Loading..."
     }

@@ -18,6 +18,7 @@ router.get('/me',authMiddleware,async (req,res)=>{
         const account=await Accounts.findOne({
                 userId:userId
             })
+
         res.status(200).json({
             username:user.username,
             firstName:user.firstName,

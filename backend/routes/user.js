@@ -6,6 +6,12 @@ const jwt=require('jsonwebtoken');
 const {JWT_SECRET}=require("../config");
 const {authMiddleware}=require('../middleware');
 
+router.get("/",async (req,res)=>{
+    res.status(200).json({
+        message:"Success!"
+    })
+})
+
 router.get('/me',authMiddleware,async (req,res)=>{
        const userId=req.userId;
        if(!userId){

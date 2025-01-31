@@ -4,10 +4,14 @@ import {Signin} from "./pages/Signin";
 import {Dashboard} from "./pages/Dashboard";
 import {SendMoney} from "./pages/SendMoney";
 import {Index} from "./components/Index"
+import { Helmet } from 'react-helmet-async';
+
 
 function App() {
 
+  
   return (
+    <>
     <div>
         <BrowserRouter>
         <Routes>
@@ -19,6 +23,7 @@ function App() {
         </Routes>
         </BrowserRouter>
     </div>
+    </>
   )
 }
 

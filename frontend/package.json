@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start":"vite"
   },
   "dependencies": {
     "axios": "^1.6.8",
@@ -15,6 +16,7 @@
     "dotenv": "^16.4.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-helmet-async": "^2.0.5",
     "react-router-dom": "^6.22.3"
   },
   "devDependencies": {

@@ -11,16 +11,23 @@ export const Users = () => {
 
     useEffect(() => {
         
-        axios.get(import.meta.env.VITE_BACKEND_URL+"/api/v1/user/bulk?filter=" + filte)
-            .then((response) => {
-                const filteredUsers = response.data.user.filter(user => {
-                    return user._id !== use.user.id
-                });
-                setUsers(filteredUsers);
+        async function getUsers(){
+            try{
                
-            })
+                const response=await axios.get(import.meta.env.VITE_BACKEND_URL+"/api/v1/user/bulk?filter=" + filte)
             
-    }, [filte])
+                if(response && use.user){
+                    const filteredUsers = response.data.user.filter(user => {return user._id !== use.user.id});
+                    setUsers(filteredUsers);
+                }   
+            }catch(e){
+                console.log(e)
+            }
+            
+        }
+        getUsers();
+            
+    }, [filte,use.loading])
 
     return <>
         <div className="font-bold mt-6 text-lg">

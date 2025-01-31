@@ -6,11 +6,6 @@ const jwt=require('jsonwebtoken');
 const {JWT_SECRET}=require("../config");
 const {authMiddleware}=require('../middleware');
 
-router.get("/",async (req,res)=>{
-    res.status(200).json({
-        message:"Success!"
-    })
-})
 
 router.get('/me',authMiddleware,async (req,res)=>{
        const userId=req.userId;
@@ -142,6 +137,17 @@ router.put("/",authMiddleware,async (req,res)=>{
 
 router.get('/bulk',async (req,res)=>{
     const filter=req.query.filter || "";
+    if(filter===""){
+        const users=await User.find({})
+        return res.status(200).json({
+            user:users.map((user)=>({
+                username:user.username,
+                firstName:user.firstName,
+                lastName:user.lastName,
+                _id:user._id
+            }))
+        })
+    }
     const users=await User.find({
         $or:[{
             firstName:{
@@ -153,8 +159,8 @@ router.get('/bulk',async (req,res)=>{
             }
         }]
     })
-
-    res.json({
+    
+    res.status(200).json({
         user:users.map((user)=>({
             username:user.username,
             firstName:user.firstName,
